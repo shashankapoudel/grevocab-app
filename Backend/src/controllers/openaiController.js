@@ -31,39 +31,39 @@
 // module.exports = { searchWord }
 
 
-const OpenAI = require("openai");
+// const OpenAI = require("openai");
 
-// Instantiate the OpenAI client
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+// // Instantiate the OpenAI client
+// const openai = new OpenAI({
+//     apiKey: process.env.OPENAI_API_KEY,
+// });
 
 
-const searchWordMeaning = async (req, res) => {
-    const { word } = req.body;
+// const searchWordMeaning = async (req, res) => {
+//     const { word } = req.body;
 
-    try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: [
-                {
-                    role: "system",
-                    content: "You are a helpful assistant.",
-                },
-                {
-                    role: "user",
-                    content: `Give me the meaning and an example sentence for the word "${word}"`,
-                },
-            ],
-            max_tokens: 50,
-        });
+//     try {
+//         const response = await openai.chat.completions.create({
+//             model: "gpt-3.5-turbo",
+//             messages: [
+//                 {
+//                     role: "system",
+//                     content: "You are a helpful assistant.",
+//                 },
+//                 {
+//                     role: "user",
+//                     content: `Give me the meaning and an example sentence for the word "${word}"`,
+//                 },
+//             ],
+//             max_tokens: 50,
+//         });
 
-        const result = response.choices[0].message.content.trim();
-        res.status(200).json({ meaning: result });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-};
+//         const result = response.choices[0].message.content.trim();
+//         res.status(200).json({ meaning: result });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: error.message });
+//     }
+// };
 
-module.exports = { searchWordMeaning };
+// module.exports = { searchWordMeaning };
