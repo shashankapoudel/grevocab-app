@@ -39,7 +39,7 @@ const QuizStartPage = () => {
                     </select>
                 </div>
                 <div>
-                    <button onClick={startQuiz} className="border text-2xl py-2 px-6 bottom-3 border-gray-300 mb-5">Start Now</button>
+                    <button onClick={startQuiz} className="border text-2xl py-2 px-6 bottom-3 border-gray-300 mb-5 hover:border-pink-300 hover:translate-y-1 hover:text-pink-400">Start Now</button>
                 </div>
             </div>
         </div>

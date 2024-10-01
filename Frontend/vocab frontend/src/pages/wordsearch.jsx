@@ -152,7 +152,7 @@ const Wordsearch = () => {
                     />
                     <button
                         onClick={fetchWordData}
-                        className="bg-blue-500 text-white px-7 py-2 rounded-lg hover:bg-blue-600 transition-all w-full sm:w-auto"
+                        className="bg-blue-500 text-white px-7 py-2 rounded-lg hover:bg-white hover:text-black transition-all w-full sm:w-auto"
                     >
                         Search
                     </button>

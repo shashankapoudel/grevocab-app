@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { IoIosLogOut } from "react-icons/io";
 
 
 const Logout = ({setUser}) => {
@@ -10,9 +11,12 @@ const Logout = ({setUser}) => {
         navigate('/login')
     }
   return (
-    <div className="text-right  bg-gray-700">
-        <button onClick={handleLogout} className=" px-4 py-1 mt-1 rounded-lg  text-white "
-        >Logout</button>
+    <div className="text-right  bg-gray-800">
+        <button onClick={handleLogout} className="border border-gray-800 px-5 mt-1 rounded-lg  text-white hover:border-pink-200"
+        >
+             <IoIosLogOut className="text-4xl hover:text-pink-200 hover:translate-x-1" />
+        </button>
+      
     </div>
   )
 }

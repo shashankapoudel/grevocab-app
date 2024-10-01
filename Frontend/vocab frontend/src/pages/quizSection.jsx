@@ -321,8 +321,8 @@ const QuizSection = () => {
                                 <button
                                     key={index}
                                     onClick={() => handleAnswerClick(choice)}
-                                    className={`border border-gray-300 px-5 py-5 text-lg 
-                                    ${answered && choice === quizQuestions[currentQuestionIndex].correctAnswer ? 'bg-green-500 text-white' : ''} 
+                                    className={`border border-gray-300 px-5 py-5 text-lg hover:border-blue-500
+                                    ${answered && choice === quizQuestions[currentQuestionIndex].correctAnswer ? 'bg-green-600 text-white' : ''} 
                                     ${answered && choice === selectedAnswer && choice !== quizQuestions[currentQuestionIndex].correctAnswer ? 'bg-red-500 text-white' : ''}`}
                                     disabled={answered}
                                 >
@@ -349,7 +349,7 @@ const QuizSection = () => {
                         <p className="text-3xl">
                             <span className="text-3xl font-semibold text-green-500">Your score</span>: {score} / {quizQuestions.length}
                         </p>
-                        <button onClick={handleRestartQuiz} className="text-2xl border border-black p-2">
+                        <button onClick={handleRestartQuiz} className="text-2xl border border-black p-2 rounded-lg hover:text-blue-500 hover:border-blue-500">
                             Restart Quiz
                         </button>
                     </div>
