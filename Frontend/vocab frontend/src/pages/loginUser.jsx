@@ -4,7 +4,7 @@ import { useToast } from "@chakra-ui/react";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginUser = () => {
+const LoginUser = ({setUser}) => {
     const toast = useToast()
     const navigate = useNavigate()
     const {
@@ -44,6 +44,7 @@ const LoginUser = () => {
                 position: "bottom"
             })
             localStorage.setItem("userInfo", JSON.stringify(data1));
+            setUser(data1)
             navigate('/')
 
 

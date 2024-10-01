@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
 
 const Home = () => {
+
     return (
+ 
         <div className='grid lg:grid-cols-3 md:grid-cols-2  sm:grid-cols-1 gap-5 p-5 sm:p-8 md:p-10 lg:p-24 min-h-screen bg-gray-900 '>
 
 
@@ -43,6 +45,7 @@ const Home = () => {
             </div>
 
         </div>
+     
     );
 }
 

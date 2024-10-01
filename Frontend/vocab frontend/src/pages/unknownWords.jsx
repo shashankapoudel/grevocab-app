@@ -27,7 +27,7 @@ const UnknownWords = () => {
             }
         }
         fetchUnknownWords()
-    },)
+    },[])
     console.log(unknown)
 
     return (
