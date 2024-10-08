@@ -1,5 +1,6 @@
 const generateToken = require("../config/generateToken");
 const User = require("../models/User");
+const { sendWelcomeEmail } = require("../services/emailService");
 const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
 const asyncHandler = require("../utils/asyncHandler");
@@ -20,8 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const token = generateToken(user._id)
     const newUser = await user.toObject();
     newUser.token = token;
-
-
+await sendWelcomeEmail(email)
     return res.status(201).json(new ApiResponse(200, newUser, "User registered successfully"));
 })
 
