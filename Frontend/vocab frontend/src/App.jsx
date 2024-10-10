@@ -11,38 +11,40 @@ import Wordsearch from "./pages/wordsearch";
 import Pdfviewer from "./pages/pdfviewer";
 import Logout from "./pages/Logout";
 import { useEffect, useState } from "react";
+import ScoreTracker from "./pages/scoreTracker";
 
 function App() {
-const[user,setUser]=useState(null)
+  const [user, setUser] = useState(null)
 
-useEffect(()=>{
+  useEffect(() => {
 
-  const storedUser = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
-  if(storedUser){
-    setUser(storedUser)
-  }
-  console.log(storedUser);
-},[])
+    const storedUser = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
+    if (storedUser) {
+      setUser(storedUser)
+    }
+    console.log(storedUser);
+  }, [])
 
   return (
     <>
       <BrowserRouter>
-      <div>
+        <div>
 
-    <Logout setUser={setUser}/>
-        <Routes>
-     
-          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/register" element={user ? <Navigate to="/" /> : <RegisterUser />} />
-          <Route path="/login" element={user ? <Navigate to="/" /> : <LoginUser setUser={setUser} />} />
-          <Route path="/wordcontainer" element={<WordContainer />} />
-          <Route path="/unknown" element={<UnknownWords />} />
-          <Route path="/quiz" element={<QuizSection />} />
-          <Route path="/quizstart" element={<QuizStartPage />} />
-          <Route path="/wordsearch" element={<Wordsearch />} />
-          <Route path="/viewpdf" element={<Pdfviewer />} />
-        </Routes>
-      </div>
+          <Logout setUser={setUser} />
+          <Routes>
+
+            <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/register" element={user ? <Navigate to="/" /> : <RegisterUser />} />
+            <Route path="/login" element={user ? <Navigate to="/" /> : <LoginUser setUser={setUser} />} />
+            <Route path="/wordcontainer" element={<WordContainer />} />
+            <Route path="/unknown" element={<UnknownWords />} />
+            <Route path="/quiz" element={<QuizSection />} />
+            <Route path="/quizstart" element={<QuizStartPage />} />
+            <Route path="/wordsearch" element={<Wordsearch />} />
+            <Route path="/viewpdf" element={<Pdfviewer />} />
+            <Route path="/scoretracker" element={<ScoreTracker />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );

@@ -28,10 +28,12 @@ const QuizStartPage = () => {
                         id="questionLimit"
                         value={questionLimit}
                         onChange={handleLimitChange}
-                        className="border px-3 py-2"
+                        className="border px-3 py-2 hover:cursor-pointer hover:border-blue-500"
                     >
 
+                        <option>10</option>
                         <option>15</option>
+                        <option>20</option>
                         <option>25</option>
                         <option>35</option>
                         <option>45</option>

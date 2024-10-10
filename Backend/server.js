@@ -25,6 +25,7 @@ app.use('/api/users', require('./src/routes/userRoutes'));
 app.use('/api/quiz', require('./src/routes/quizRoutes'))
 app.use('/api', require('./src/routes/worddicRoutes'))
 app.use('/api', require('./src/routes/pdfRoutes'))
+app.use('/api/score', require('./src/routes/scoreRoutes'))
 // app.use('/api/openai', require('./src/routes/openaiRoutes'))
 
 

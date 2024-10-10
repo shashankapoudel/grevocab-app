@@ -23,7 +23,23 @@ const UserSchema = new mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Word"
             }
-        ]
+        ],
+    scores: [
+        {
+            score: {
+
+                type: Number,
+                required: true
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            },
+            fullmark: {
+                type: Number,
+                required: true
+            }
+        }]
 
 })
 module.exports = mongoose.model('User', UserSchema)

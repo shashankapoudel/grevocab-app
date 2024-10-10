@@ -42,7 +42,7 @@ const Home = () => {
                 </Link>
             </div>
             <div className='flex justify-center items-center h-60 sm:h-64 md:h-72 bg-gray-700 mt-10 sm:mt-6  p-4 w-full'>
-                <Link to="/viewpdf" className='text-white font-medium text-xl sm:text-2xl md:text-3xl flex items-center hover:translate-x-2 hover:text-purple-200'>
+                <Link to="/scoretracker" className='text-white font-medium text-xl sm:text-2xl md:text-3xl flex items-center hover:translate-x-2 hover:text-purple-200'>
                     Score Tracker
                     <FaArrowRight className='ml-2 mt-1' />
                 </Link>
