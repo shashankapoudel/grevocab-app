@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Thead, Tbody, Tr, Th, Td, TableContainer } from '@chakra-ui/react';
-import PieTracker from './pieTracker';
+import PieTracker from '../components/pieTracker';
 
 const ScoreTracker = () => {
 

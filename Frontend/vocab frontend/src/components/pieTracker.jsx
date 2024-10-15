@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -10,6 +11,7 @@ const PieTracker = ({ results, setResults }) => {
   const [totalScore, setTotalScore] = useState(0)
   const [totalFullMark, setTotalFullMark] = useState(0)
   const [averageScore, setAverageScore] = useState(0)
+  const navigate = useNavigate()
 
 
   const calculateTotals = () => {
@@ -40,7 +42,10 @@ const PieTracker = ({ results, setResults }) => {
     ],
   };
 
+  const improveVocab = () => {
+    navigate('/improvevocab', { state: { averageScore } })
 
+  }
 
 
   return (
@@ -59,7 +64,9 @@ const PieTracker = ({ results, setResults }) => {
           <Pie data={pieData} />
         </div>
       </div>
-      <button className='border border-green-300 p-5 flex flex-row justify-center items-center text-xl text-green-700 hover:bg-green-100 hover:border-blue-200'>How can i improve my vocabulary from here?
+      <button
+        onClick={improveVocab}
+        className='border border-green-300 p-5 flex flex-row justify-center items-center text-xl text-green-700 hover:bg-green-100 hover:border-blue-200'>How can i improve my vocabulary from here?
         <FaArrowRight className='ml-2  text-2xl' />
       </button>
     </div>

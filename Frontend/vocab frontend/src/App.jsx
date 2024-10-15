@@ -12,6 +12,7 @@ import Pdfviewer from "./pages/pdfviewer";
 import Logout from "./pages/Logout";
 import { useEffect, useState } from "react";
 import ScoreTracker from "./pages/scoreTracker";
+import ImproveVocab from "./pages/improveVocab";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -43,6 +44,7 @@ function App() {
             <Route path="/wordsearch" element={<Wordsearch />} />
             <Route path="/viewpdf" element={<Pdfviewer />} />
             <Route path="/scoretracker" element={<ScoreTracker />} />
+            <Route path="/improvevocab" element={<ImproveVocab />} />
           </Routes>
         </div>
       </BrowserRouter>
