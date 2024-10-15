@@ -26,6 +26,7 @@ const studyMaterialsForHighScore = [
 const ImproveVocab = () => {
     const location = useLocation();
     const [recomendedMaterials, setRecomendedMaterials] = useState([])
+    const [selectedPdf, setSelectedPdf] = useState(null)
 
     useEffect(() => {
         const avg = location.state;
@@ -33,30 +34,46 @@ const ImproveVocab = () => {
 
         if (avg.averageScore <= 4) {
             setRecomendedMaterials(studyMaterialsForLowScore)
-        } else if (4 < avg.averageScore < 8) {
+        } else if (avg.averageScore > 4 && avg.averageScore <= 8) {
             setRecomendedMaterials(studyMaterialsForMidScore)
         } else {
             setRecomendedMaterials(studyMaterialsForHighScore)
         }
-    })
+    }, [location.state])
 
+    const handlePdfSelect = (url) => {
+        setSelectedPdf(url)
+    }
 
     return (
-        <div className="p-10">
-            <h1 className="text-2xl font-bold mb-5">Study Material Suggestions</h1>
+        <div className="p-10 flex flex-col justify-center items-center mt-20">
+            <h1 className="text-4xl font-bold mb-5">Study Material Suggestions</h1>
 
             <div className="mt-5">
-                <h2 className="text-xl font-semibold">Recommended Study Materials</h2>
-                <ul className="list-disc ml-6 mt-2">
+                <h2 className="text-2xl font-semibold">Recommended Study Materials</h2>
+                <ul className="list-disc ml-6 mt-4">
                     {recomendedMaterials.map((material, index) => (
                         <li key={index} className="mb-2">
-                            <a href={material.link} className="text-blue-500 hover:underline">
+                            <a
+                                onClick={() => handlePdfSelect(material.url)}
+                                href={material.url} className="text-blue-500 hover:underline text-xl">
                                 {material.title}
                             </a>
                         </li>
                     ))}
                 </ul>
             </div>
+            {selectedPdf && (
+                <div className="w-full h-full">
+                    <iframe
+                        src={selectedPdf}
+                        title="PDF Viewer"
+                        className="w-full h-screen border-none"
+                        style={{ height: "100vh" }}
+                    ></iframe>
+                </div>
+            )
+            }
         </div>
     )
 }
