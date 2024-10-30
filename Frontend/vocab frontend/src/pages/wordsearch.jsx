@@ -137,6 +137,16 @@ const Wordsearch = () => {
         }
     };
 
+    const speak = (text) => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';  // Set language as English
+            speechSynthesis.speak(utterance);
+        } else {
+            alert("Sorry, your browser does not support text-to-speech!");
+        }
+    };
+
     return (
         <div className="flex flex-col  justify-center items-center w-full h-screen bg-[#FAF8FF]">
             <div className='bg-white w-1/2 h-2/3 flex flex-col justify-center items-center p-2'>
@@ -165,6 +175,12 @@ const Wordsearch = () => {
                             <h2 className="text-4xl font-semibold text-center">{wordData.word}</h2>
                             <p className='text-xl'><strong>Meaning:</strong> {wordData.meaning}</p>
                             <p className='text-xl'><strong>Example:</strong> {wordData.example}</p>
+                            <button
+                                className="bg-green-500 text-white p-2 mt-4"
+                                onClick={() => speak(wordData.word)}
+                            >
+                                Hear Pronunciation
+                            </button>
                         </>
                     ) : (
                         <p>No word found. Try searching for another word.</p>

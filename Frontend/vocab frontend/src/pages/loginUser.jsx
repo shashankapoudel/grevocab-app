@@ -4,7 +4,7 @@ import { useToast } from "@chakra-ui/react";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginUser = ({setUser}) => {
+const LoginUser = ({ setUser }) => {
     const toast = useToast()
     const navigate = useNavigate()
     const {
@@ -65,9 +65,18 @@ const LoginUser = ({setUser}) => {
     };
 
     return (
-        <div className="flex m-5 justify-center items-center bg-gray-500 min-h-screen">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 bg-white w-1/3 p-6 rounded-lg shadow-md max-w-lg">
+        <div className="flex  justify-center items-center bg-gray-500 min-h-screen bg-cover bg-center"
+            style={{
+                backgroundImage: "url('/public/Images/loginimage4.jpg')",
+                // backgroundSize: '60%',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                height: '100vh',
+                width: '100vw',
+            }}>
+            < form onSubmit={handleSubmit(onSubmit)} className=" flex justify-center items-center space-y-6 bg-opacity-10 backdrop-blur-6 bg-white w-full p-12 rounded-lg shadow-2xl max-w-lg">
                 <div className="grid grid-cols-1 gap-4 w-full p-4">
+                    <h2 className="text-white text-4xl mb-4 text-center font-bold">Welcome</h2>
                     <div>
                         <Controller
                             name="email"
@@ -81,7 +90,7 @@ const LoginUser = ({setUser}) => {
                             render={({ field }) => (
                                 <div className="flex flex-col">
                                     <label
-                                        className="text-sm md:text-base lg:text-labelLarge ml-1 mb-2"
+                                        className="text-sm md:text-base lg:text-labelLarge ml-1 mb-2 text-white"
                                         htmlFor="email"
                                     >
                                         Email
@@ -119,7 +128,7 @@ const LoginUser = ({setUser}) => {
                             render={({ field }) => (
                                 <div className="flex flex-col">
                                     <label
-                                        className="text-labelLarge ml-1 mb-2"
+                                        className="text-labelLarge ml-1 mb-2 text-white"
                                         htmlFor="password"
                                     >
                                         Password
@@ -144,19 +153,19 @@ const LoginUser = ({setUser}) => {
                         />
                     </div>
                     <button
-                        className="border-black border-2 py-2 px-4 rounded-lg md:w-auto"
+                        className="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg"
                         type="submit">
-                        Save and Continue
+                        Log In
                     </button>
 
                     <div className="flex justify-center items-center">
-
-                        <p className="font-semibold text-gray-700">If you do not have an account, <Link to='/register'><span className="text-blue-500 font-semibold underline">Register</span></Link></p>
+                        <p className="font-semibold text-white">If you do not have an account, <Link to='/register'><span className="text-yellow-500 font-semibold underline">Register</span></Link></p>
                     </div>
                 </div>
             </form>
-        </div>
+        </div >
     );
 };
 
 export default LoginUser;
+

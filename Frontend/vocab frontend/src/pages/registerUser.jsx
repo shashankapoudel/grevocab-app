@@ -65,8 +65,14 @@ const RegisterUser = () => {
     };
 
     return (
-        <div className="flex m-5 justify-center items-center bg-gray-500 min-h-screen">
-            <form className="space-y-3 bg-white p-6 rounded-lg shadow-md w-1/3" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex  justify-center items-center bg-gray-500 min-h-screen"
+            style={{
+                backgroundImage: "url('/public/Images/registerImage.jpg')",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+            }}
+        >
+            <form className="space-y-6 bg-opacity-10 backdrop-blur-6 bg-white p-14 rounded-2xl shadow-xl w-1/3" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-1 gap-4 w-full p-4">
                     {/* Name Field */}
                     <div className="flex flex-col">
@@ -82,7 +88,7 @@ const RegisterUser = () => {
                             render={({ field }) => (
                                 <div className="flex flex-col">
                                     <label
-                                        className="text-labelLarge ml-1 mb-2"
+                                        className="text-labelLarge ml-1 mb-2 text-white"
                                         htmlFor="name"
                                     >
                                         Name
@@ -121,7 +127,7 @@ const RegisterUser = () => {
                             render={({ field }) => (
                                 <div className="flex flex-col">
                                     <label
-                                        className="text-labelLarge ml-1 mb-2"
+                                        className="text-labelLarge ml-1 mb-2 text-white"
                                         htmlFor="email"
                                     >
                                         Email
@@ -160,7 +166,7 @@ const RegisterUser = () => {
                             render={({ field }) => (
                                 <div className="flex flex-col">
                                     <label
-                                        className="text-labelLarge ml-1 mb-2"
+                                        className="text-labelLarge ml-1 mb-2 text-white"
                                         htmlFor="password"
                                     >
                                         Password
@@ -188,7 +194,7 @@ const RegisterUser = () => {
                     {/* Submit Button */}
 
                     <button
-                        className="border-black border-2 py-2 px-4 rounded-lg text-gray-600"
+                        className="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg"
                         type="submit"
                     >
                         Save and Submit
@@ -197,7 +203,7 @@ const RegisterUser = () => {
 
                     <div className="flex justify-center items-center">
 
-                        <p className="font-semibold text-gray-700">If you already have an account, <Link to='/login'><span className="text-blue-500 font-semibold underline">Login</span></Link></p>
+                        <p className="font-semibold text-white">If you already have an account, <Link to='/login'><span className="text-yellow-500 font-semibold underline">Login</span></Link></p>
                     </div>
                 </div>
             </form>

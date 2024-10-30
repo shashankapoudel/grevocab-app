@@ -12,6 +12,10 @@ const PieTracker = ({ results, setResults }) => {
   const [totalFullMark, setTotalFullMark] = useState(0)
   const [averageScore, setAverageScore] = useState(0)
   const navigate = useNavigate()
+  // const user = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+  const user = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+  // console.log(user);
+
 
 
   const calculateTotals = () => {
@@ -29,6 +33,30 @@ const PieTracker = ({ results, setResults }) => {
     calculateTotals()
   }, [results])
 
+
+  const sendAverageScore = async () => {
+    const token = user.data.token;
+    const userId = user.data.user._id;
+    try {
+      const res = await fetch('http://localhost:5000/api/avg/avgscore', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ averageScore, userId })
+      })
+      const data = await res.json;
+    } catch (error) {
+      console.log('Error sending average score', error)
+    }
+  }
+
+  useEffect(() => {
+    if (averageScore > 0) {
+      sendAverageScore()
+    }
+  }, [averageScore])
 
   const pieData = {
     labels: ['Score Obtained', 'Score Lost'],
@@ -49,7 +77,7 @@ const PieTracker = ({ results, setResults }) => {
 
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2  p-5 gap-5'>
+    <div className='grid grid-cols-1 md:grid-cols-2  p-5 gap-5 mt-32'>
       <div className=" p-5 rounded-lg mb-5   ">
         <h2 className="text-xl font-semibold mb-2">Score Analysis</h2>
         <p className='text-xl'><strong>Total Score:</strong> {totalScore}</p>

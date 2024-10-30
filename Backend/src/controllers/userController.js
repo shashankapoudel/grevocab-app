@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const token = generateToken(user._id)
     const newUser = await user.toObject();
     newUser.token = token;
-await sendWelcomeEmail(email)
+    await sendWelcomeEmail(email)
     return res.status(201).json(new ApiResponse(200, newUser, "User registered successfully"));
 })
 
@@ -32,7 +32,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     const user = await User.findOne({ email })
     if (!user) {
-        throw new ApiError(400, 'User with this email doesnot exist')
+        throw new ApiError(404, 'User with this email doesnot exist')
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password)
     if (!isPasswordCorrect) {

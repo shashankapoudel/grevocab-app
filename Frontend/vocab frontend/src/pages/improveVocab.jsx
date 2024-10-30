@@ -46,7 +46,7 @@ const ImproveVocab = () => {
     }
 
     return (
-        <div className="p-10 flex flex-col justify-center items-center mt-20">
+        <div className="p-10 flex flex-col justify-center items-center m-20 bg-[#FAF8FF]">
             <h1 className="text-4xl font-bold mb-5">Study Material Suggestions</h1>
 
             <div className="mt-5">

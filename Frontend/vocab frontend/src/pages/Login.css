@@ -1,0 +1,27 @@
+/* General input styling */
+.underline-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    /* White underline with opacity */
+    padding: 10px 0;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    /* Remove default outline when focused */
+    transition: border-color 0.3s ease-in-out;
+    /* Transition effect for the border */
+}
+
+/* On focus, change the underline color */
+.underline-input:focus {
+    border-bottom: 2px solid white;
+    /* Fully opaque white on focus */
+}
+
+/* Placeholder styling */
+.underline-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    /* Lighter placeholder text */
+    font-size: 14px;
+}

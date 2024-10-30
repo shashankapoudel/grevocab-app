@@ -27,7 +27,7 @@ const UnknownWords = () => {
             }
         }
         fetchUnknownWords()
-    },[])
+    }, [])
     console.log(unknown)
 
     return (
@@ -35,11 +35,11 @@ const UnknownWords = () => {
             <TableContainer>
                 <Table className="table-auto w-full border-separate" style={{ borderSpacing: 0 }}>
                     <Thead>
-                        <Tr className='bg-black'>
-                            <Th className='text-white text-center border-r'>S.N</Th>
-                            <Th className="text-white text-center border-r">Words</Th>
-                            <Th className="text-white text-center border-r">Meaning</Th>
-                            <Th className="text-white text-center">Sentence</Th>
+                        <Tr className='bg-[#0056D10D]'>
+                            <Th className='text-black text-center border-r p-3'>S.N</Th>
+                            <Th className="text-black text-center border-r p-3">Words</Th>
+                            <Th className="text-black text-center border-r p-3">Meaning</Th>
+                            <Th className="text-black text-center p-3">Sentence</Th>
                         </Tr>
                     </Thead>
                     <Tbody className="space-y-4">

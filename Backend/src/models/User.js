@@ -16,6 +16,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
     unknownWords:
         [
             {
@@ -24,6 +25,7 @@ const UserSchema = new mongoose.Schema({
                 ref: "Word"
             }
         ],
+
     scores: [
         {
             score: {
@@ -38,8 +40,23 @@ const UserSchema = new mongoose.Schema({
             fullmark: {
                 type: Number,
                 required: true
-            }
-        }]
+            },
+        }],
+    AverageScore: {
+        type: Number,
+        // required: true
+
+    },
+
+    lastActiveDate: {
+        type: Date,
+        default: null
+
+    },
+    streakCount: {
+        type: Number,
+        default: 0
+    }
 
 })
 module.exports = mongoose.model('User', UserSchema)

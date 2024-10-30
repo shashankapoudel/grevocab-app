@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toast styles
+import { AiFillAudio } from "react-icons/ai";
 
 const WordContainer = () => {
 
@@ -88,14 +89,35 @@ const WordContainer = () => {
         return <div>Loading words...</div>;
     }
 
+    const speak = (text) => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';  // Set language as English
+            speechSynthesis.speak(utterance);
+        } else {
+            alert("Sorry, your browser does not support text-to-speech!");
+        }
+    };
+
+
+
     return (
         <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 mx-5 my-4 flex items-center justify-center min-h-screen">
             <div className="text-center max-w-4xl w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[550px] 
              bg-[#FAF8FF]
              flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border ">
-                <h1 className=" sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-orange-400 flex justify-center items-center">
-                    <span className="lg:text-5xl sm:text-2xl">({currentWordIndex + 1})</span>   Word: {words[currentWordIndex].word}
-                </h1>
+                <div className="flex ">
+
+                    <h1 className=" sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-orange-400 flex justify-center items-center">
+                        <span className="lg:text-5xl sm:text-2xl">({currentWordIndex + 1})</span>   Word: {words[currentWordIndex].word}
+                    </h1>
+                    <button
+                        className="p-2 mb-7 text-orange-300"
+                        onClick={() => speak(words[currentWordIndex].word)}
+                    >
+                        <AiFillAudio className="text-2xl" />
+                    </button>
+                </div>
                 <p className="cursor-pointer mb-5 text-gray-500" onClick={handleToggle}>
                     {active ? 'Hide meaning and sentence' : 'Show meaning and sentence'}
                 </p>
