@@ -23,6 +23,7 @@ const QuizSection = () => {
     const [shuffledChoices, setShuffledChoices] = useState([]); // For shuffled choices
     const user = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
     console.log(user);
+    // const [index, setIndex] = useState(1)
 
 
     const fetchQuiz = async () => {
@@ -109,9 +110,13 @@ const QuizSection = () => {
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-white">
-            <div className={`flex justify-center items-center w-2/3 h-3/4 ${!showResults ? 'bg-[#FAF8FF] shadow-lg' : 'bg-white'}`}>
+            <div className={`flex justify-center items-center relative w-2/3 h-3/4 ${!showResults ? 'bg-[#FAF8FF] shadow-lg' : 'bg-white'}`}>
                 {quizQuestions.length > 0 && !showResults && (
                     <div>
+                        <div className="absolute  left-4 top-4">
+                            <span > Question {currentQuestionIndex + 1} of {questionLimit} </span>
+                        </div>
+
                         <div className="flex justify-center items-center">
                             <h2 className="text-center text-red-500 font-semibold text-3xl">
                                 {quizQuestions[currentQuestionIndex].question}
@@ -122,7 +127,7 @@ const QuizSection = () => {
                                 <button
                                     key={index}
                                     onClick={() => handleAnswerClick(choice)}
-                                    className={`border border-gray-300 px-5 py-5 text-lg hover:border-blue-500
+                                    className={`border border-gray-300 px-4 py-3 text-lg hover:border-blue-500
                                     ${answered && choice === quizQuestions[currentQuestionIndex].correctAnswer ? 'bg-green-600 text-white' : ''} 
                                     ${answered && choice === selectedAnswer && choice !== quizQuestions[currentQuestionIndex].correctAnswer ? 'bg-red-500 text-white' : ''}`}
                                     disabled={answered}

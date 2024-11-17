@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Leaderboard = () => {
-
+    const navigate = useNavigate()
     const user = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-    console.log(user);
+    // console.log(user);
     const [leaderboardteam, setLeaderboardteam] = useState([])
 
 
     const handleClick = async () => {
         const token = user.data.token;
-        console.log(token);
+        // console.log(token);
         try {
             const res = await fetch('http://localhost:5000/api/leaderboard', {
                 method: 'GET',
@@ -19,17 +20,18 @@ const Leaderboard = () => {
                 }
             })
             const data = await res.json();
-            console.log(data);
-
+            setLeaderboardteam(data.data)
+            // console.log(data.data);
+            navigate('/scoretracker/leadertable', { state: { leaderboardteam: data.data } })
         } catch (error) {
             console.log("error", error);
 
         }
-
     }
+
     return (
-        <div className='mt-30 flex justify-center items-center  bg-black'>
-            <h1 onClick={handleClick}>See Leaderboard</h1>
+        <div className='mt-30 flex justify-center items-center  bg-[#0056D10D] text-gray-800 p-10'>
+            <button onClick={handleClick}>See Leaderboard</button>
         </div>
     )
 }

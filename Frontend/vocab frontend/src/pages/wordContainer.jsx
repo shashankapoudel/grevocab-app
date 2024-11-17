@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the toast styles
+import 'react-toastify/dist/ReactToastify.css';
 import { AiFillAudio } from "react-icons/ai";
+import NoteBook from "../components/NoteBook";
 
 const WordContainer = () => {
 
@@ -10,10 +11,10 @@ const WordContainer = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [active, setActive] = useState(false);
     const user = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
+    const [note, setNote] = useState('');
 
     const getWords = async () => {
         const token = user.data.token;
-
         try {
             const res = await fetch('http://localhost:5000/api/words/words', {
                 method: 'GET',
@@ -21,7 +22,7 @@ const WordContainer = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-            })
+            });
             const data = await res.json();
             setWords(data);
         } catch (error) {
@@ -33,23 +34,67 @@ const WordContainer = () => {
         getWords();
     }, []);
 
+
+
+    const fetchNoteForWord = async (currentWordIndex) => {
+        const wordToAdd = words[currentWordIndex]
+        // console.log(wordToAdd);
+
+        const token = user.data.token;
+        const wordId = wordToAdd._id;
+        // console.log(wordId);
+
+        try {
+            const res = await fetch(`http://localhost:5000/api/word/note/${wordId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            const data = await res.json();
+            if (data.data == null) {
+                setNote('')
+            } else {
+                setNote(data.data.note)
+            }
+            console.log(data);
+
+        } catch (error) {
+            console.log("Error", error)
+        }
+    }
+
+
+    // useEffect(() => {
+    //     fetchNoteForWord()
+    // }, [currentWordIndex])
+
+
     const handleNext = () => {
-        setCurrentWordIndex((prevIndex) =>
-            prevIndex === words.length - 1 ? prevIndex : prevIndex + 1
+        setCurrentWordIndex((prevIndex) => {
+            const newIndex = prevIndex === words.length - 1 ? prevIndex : prevIndex + 1;
+            fetchNoteForWord(newIndex)
+            return newIndex;
+        }
         );
         setActive(false);
+
     };
 
     const handlePrevious = () => {
-        setCurrentWordIndex((prevIndex) =>
-            prevIndex === 0 ? prevIndex : prevIndex - 1
+        setCurrentWordIndex((prevIndex) => {
+
+            const newIndex = prevIndex === 0 ? prevIndex : prevIndex - 1;
+            fetchNoteForWord(newIndex)
+            return newIndex;
+        }
         );
         setActive(false);
     };
 
     const handleStore = async () => {
         const wordToAdd = words[currentWordIndex];
-        console.log(wordToAdd);
         const wordId = wordToAdd._id;
 
         const token = user.data.token;
@@ -92,7 +137,7 @@ const WordContainer = () => {
     const speak = (text) => {
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US';  // Set language as English
+            utterance.lang = 'en-US';
             speechSynthesis.speak(utterance);
         } else {
             alert("Sorry, your browser does not support text-to-speech!");
@@ -100,16 +145,13 @@ const WordContainer = () => {
     };
 
 
-
     return (
-        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 mx-5 my-4 flex items-center justify-center min-h-screen">
+        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 flex items-center justify-center min-h-screen relative sm:grid grid-cols-1 sm:m-20">
             <div className="text-center max-w-4xl w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[550px] 
-             bg-[#FAF8FF]
-             flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border ">
-                <div className="flex ">
-
+             bg-[#FAF8FF] flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border ">
+                <div className="flex">
                     <h1 className=" sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-orange-400 flex justify-center items-center">
-                        <span className="lg:text-5xl sm:text-2xl">({currentWordIndex + 1})</span>   Word: {words[currentWordIndex].word}
+                        <span className="lg:text-5xl sm:text-2xl">({currentWordIndex + 1})</span> Word: {words[currentWordIndex].word}
                     </h1>
                     <button
                         className="p-2 mb-7 text-orange-300"
@@ -153,20 +195,31 @@ const WordContainer = () => {
                     I did not know this word
                 </button>
             </div>
-            {/* ToastContainer with bottom position */}
+
             <ToastContainer
-                position="bottom-center"  // Change this to position the toast at the bottom
-                autoClose={5000}           // Automatically close the toast after 5 seconds
-                hideProgressBar={false}    // Show progress bar
-                newestOnTop={false}        // Show the newest toast at the top
-                closeOnClick                // Close toast on click
-                rtl={false}                // Left-to-right layout
-                pauseOnFocusLoss            // Pause toast on focus loss
-                draggable                   // Make the toast draggable
-                pauseOnHover                // Pause toast on hover
-            />
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                closeOnClick
+                draggable
+                pauseOnHover />
+
+            <div className="absolute top-10 right-10 bg-white sm: flex sm:items-center">
+                <NoteBook
+                    note={note}
+                    setNote={setNote}
+                    words={words}
+                    currentWordIndex={currentWordIndex}
+                    user={user}
+                    toast={toast}
+                    ToastContainer={ToastContainer}
+                    fetchNoteForWord={fetchNoteForWord}
+                />
+            </div>
         </div>
+
     );
 };
 
 export default WordContainer;
+
