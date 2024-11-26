@@ -27,11 +27,6 @@ const getNote = asyncHandler(async (req, res) => {
     const userId = req.user._id;
 
     const notes = await Notes.findOne({ userId, wordId })
-    // if (!notes) {
-    //     // throw new ApiError(404, 'Notes not found')
-    //     const newNote = Notes.create({ userId, wordId, note: "" })
-    //     return res.status(201).json(new ApiResponse(200, newNote, 'Notes retrieved successfully'))
-    // }
     return res.status(201).json(new ApiResponse(200, notes, 'Notes retrieved successfully'))
 
 })

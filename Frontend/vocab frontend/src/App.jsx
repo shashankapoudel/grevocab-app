@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import ScoreTracker from "./pages/scoreTracker";
 import ImproveVocab from "./pages/improveVocab";
 import LeaderTable from "./pages/leaderTable";
+import SearchWordonDifficulty from "./pages/searchWordonDifficulty";
+import SearchWordOnUserDifficulty from "./pages/searchWordOnUserDifficulty";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -47,6 +49,8 @@ function App() {
             <Route path="/scoretracker" element={<ScoreTracker />} />
             <Route path="/improvevocab" element={<ImproveVocab />} />
             <Route path="/scoretracker/leadertable" element={<LeaderTable />} />
+            <Route path="/wordcontainer/difficulty" element={<SearchWordonDifficulty />} />
+            <Route path="/wordcontainer/users-difficulty" element={<SearchWordOnUserDifficulty />} />
           </Routes>
         </div>
       </BrowserRouter>

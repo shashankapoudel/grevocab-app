@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillAudio } from "react-icons/ai";
 import NoteBook from "../components/NoteBook";
+import SearchWordonDifficulty from "./searchWordonDifficulty";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const WordContainer = () => {
 
@@ -12,6 +14,8 @@ const WordContainer = () => {
     const [active, setActive] = useState(false);
     const user = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null;
     const [note, setNote] = useState('');
+    const [wordDifficulty, setWordDifficulty] = useState({})
+    const navigate = useNavigate()
 
     const getWords = async () => {
         const token = user.data.token;
@@ -144,9 +148,53 @@ const WordContainer = () => {
         }
     };
 
+    const handleDifficulty = async (difficulty) => {
+        const wordToAdd = words[currentWordIndex]
+        const wordId = wordToAdd._id;
+        console.log(wordToAdd);
+        setWordDifficulty((prev) => ({
+            ...prev,
+            [wordId]: difficulty
+        }))
+        const token = user.data.token;
+        try {
+            const res = await fetch('http://localhost:5000/api/word/difficulty', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ wordId, difficulty })
+            })
+            toast.success(`Word added to the ${difficulty} section`);
+        } catch (error) {
+            toast.error("Error adding unknown word.");
+        }
+    }
+
+    const handleClick = () => {
+        navigate('/wordcontainer/difficulty', { state: { words: words } })
+    }
+
+    const handleGeneralUser = () => {
+        navigate('/wordcontainer/users-difficulty', { state: { words: words } })
+    }
 
     return (
-        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 flex items-center justify-center min-h-screen relative sm:grid grid-cols-1 sm:m-20">
+        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 flex items-center justify-center min-h-screen relative">
+            <div className="absolute flex gap-10 top-5 text-blue-400">
+                <button
+                    onClick={handleClick}
+                    className="underline  hover:text-blue-700 focus:text-blue-700">
+                    Click  to check for words based on the difficulty you have chosen
+                </button>
+                <button
+                    onClick={handleGeneralUser}
+                    className="underline  hover:text-blue-700 focus:text-blue-700">
+                    Click to check for words based on difficulty for general users
+                </button>
+            </div>
+
             <div className="text-center max-w-4xl w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[550px] 
              bg-[#FAF8FF] flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border ">
                 <div className="flex">
@@ -194,8 +242,26 @@ const WordContainer = () => {
                 >
                     I did not know this word
                 </button>
-            </div>
 
+                <div className="absolute bottom-2 right-2 flex gap-10 ">
+                    <button
+                        onClick={() => handleDifficulty('easy')}
+                        className="bg-orange-100 text-gray-600 border-black font-medium py-1 px-4 rounded-lg hover:bg-orange-200 ">
+                        Easy
+                    </button>
+                    <button
+                        onClick={() => handleDifficulty('medium')}
+                        className="bg-orange-100 text-gray-600 border-black font-medium py-1 px-4 rounded-lg hover:bg-orange-200">
+                        Medium
+                    </button>
+                    <button
+                        onClick={() => handleDifficulty('hard')}
+                        className="bg-orange-100 text-gray-600 border-black font-medium py-1 px-4 rounded-lg hover:bg-orange-200">
+                        Hard
+                    </button>
+                </div>
+
+            </div>
             <ToastContainer
                 position="bottom-center"
                 autoClose={5000}

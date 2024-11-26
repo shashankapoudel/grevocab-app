@@ -46,10 +46,8 @@ const getUserUnknownWords = async (req, res) => {
 const addUnknownWord = async (req, res) => {
     const { wordId } = req.body;
     const userId = req.user._id;
-  
 
     try {
-
         const word = await Word.findById(wordId);
 
         if (!word) {

@@ -19,6 +19,20 @@ const WordSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    userDifficulty: [
+        {
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            difficulty: {
+                type: String,
+                enum: ['easy', 'medium', 'hard'],
+                default: ''
+            }
+        }
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

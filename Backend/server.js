@@ -79,6 +79,7 @@ app.use('/api/user', require('./src/routes/streakRoutes'));
 app.use('/api/avg', require('./src/routes/avgScoreRoutes'));
 app.use('/api/', require('./src/routes/leaderBoardRoutes'));
 app.use('/api/word', require('./src/routes/noteRoutes.js'));
+app.use('/api', require('./src/routes/difficultyRoutes'));
 
 // Initialize multiplayer quiz Socket.IO logic
 initializeQuizSocket(io);
