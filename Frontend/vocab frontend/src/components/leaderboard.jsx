@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa6";
 
 const Leaderboard = () => {
     const navigate = useNavigate()
@@ -30,8 +31,10 @@ const Leaderboard = () => {
     }
 
     return (
-        <div className='mt-30 flex justify-center items-center  bg-[#0056D10D] text-gray-800 p-10'>
-            <button onClick={handleClick}>See Leaderboard</button>
+        <div className='mt-30 flex justify-center items-center  bg-[#0056D10D] text-gray-800 p-10 '>
+            <button className='flex hover:translate-x-1 hover:text-blue-700 font-semibold text-2xl' onClick={handleClick}>See Leaderboard
+                <FaArrowRight className='ml-1 mt-1' />
+            </button>
         </div>
     )
 }
