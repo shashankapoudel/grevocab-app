@@ -28,22 +28,40 @@ const NoteBook = ({ note, setNote, words, currentWordIndex, user, toast, }) => {
         }
     }
     return (
-        <div className='flex flex-col w-full mx-auto bg-gray-300 p-6'>
+        // <div className='flex flex-col w-full mx-auto border '>
+        //     <textarea
+        //         placeholder='Add your personal note for this word'
+        //         value={note}
+        //         onChange={(e) => setNote(e.target.value)}
+        //         className='w-full p-2 rounded border-gray-300 text-gray-700 resize-none'
+        //         rows="3"
+        //     // cols="54"
+
+        //     />
+        //     <button
+        //         className='text-black'
+        //         onClick={handleSaveNote}>
+        //         Save Note
+        //     </button>
+        // </div>
+
+        <div className="flex flex-col w-full  mx-auto border bg-white">
             <textarea
-                placeholder='Add your personal note for this word'
+                placeholder="Add your personal note for this word"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                className='w-full p-2 rounded border border-gray-300 text-gray-700 resize-none'
-                rows="6"
-                cols="34"
-
+                className="w-full p-1 rounded border  text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                rows="3"
+                cols="30"
             />
             <button
-                className='text-black'
-                onClick={handleSaveNote}>
+                className=" text-black py-2 px-2 rounded hover:bg-blue-200 transition duration-300 text-center"
+                onClick={handleSaveNote}
+            >
                 Save Note
             </button>
         </div>
+
     )
 }
 

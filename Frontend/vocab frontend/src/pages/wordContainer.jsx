@@ -181,8 +181,8 @@ const WordContainer = () => {
     }
 
     return (
-        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 flex items-center justify-center min-h-screen relative">
-            <div className="absolute flex gap-10 top-5 text-blue-400">
+        <div className="bg-white text-white p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col items-center justify-center h-screen min-h-[120vh]  relative">
+            <div className="absolute flex flex-col sm:flex-row gap-8 top-5 text-blue-400 text-sm sm:text-sm lg:text-xl">
                 <button
                     onClick={handleClick}
                     className="underline  hover:text-blue-700 focus:text-blue-700">
@@ -195,8 +195,8 @@ const WordContainer = () => {
                 </button>
             </div>
 
-            <div className="text-center max-w-4xl w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[550px] 
-             bg-[#FAF8FF] flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border ">
+            <div className="text-center max-w-4xl w-full min-h-[500px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[650px] 
+             bg-[#FAF8FF] flex items-center flex-col justify-center relative rounded-lg shadow-2xl border-none border p-2 ">
                 <div className="flex">
                     <h1 className=" sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-orange-400 flex justify-center items-center">
                         <span className="lg:text-5xl sm:text-2xl">({currentWordIndex + 1})</span> Word: {words[currentWordIndex].word}
@@ -222,7 +222,7 @@ const WordContainer = () => {
                     </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row justify-between w-full sm:w-2/3 gap-3 sm:gap-6 mb-6">
+                <div className="flex flex-col sm:flex-row justify-between w-2/3 sm:w-2/3 gap-2 sm:gap-2 mb-6 sm:m-6">
                     <button
                         onClick={handlePrevious}
                         className="bg-orange-200 text-gray-600 font-semibold py-2 px-4 rounded-lg text-sm sm:text-base md:text-lg hover:bg-yellow-400 transition duration-300"
@@ -235,15 +235,16 @@ const WordContainer = () => {
                     >
                         Next
                     </button>
+                    <button
+                        className="bg-orange-200 text-gray-600 font-semibold py-2 px-4 rounded-lg text-sm sm:text-base md:text-lg hover:bg-yellow-400 transition duration-300 w-full sm:w-auto"
+                        onClick={handleStore}
+                    >
+                        I did not know this word
+                    </button>
                 </div>
-                <button
-                    className="bg-orange-200 text-gray-600 font-semibold py-2 px-4 rounded-lg text-sm sm:text-base md:text-lg hover:bg-yellow-400 transition duration-300 w-full sm:w-auto"
-                    onClick={handleStore}
-                >
-                    I did not know this word
-                </button>
 
-                <div className="absolute bottom-2 right-2 flex gap-10 ">
+
+                <div className="absolute bottom-2 lg:bottom-4 sm:bottom-2 right-2 flex gap-8 ">
                     <button
                         onClick={() => handleDifficulty('easy')}
                         className="bg-orange-100 text-gray-600 border-black font-medium py-1 px-4 rounded-lg hover:bg-orange-200 ">
@@ -262,6 +263,7 @@ const WordContainer = () => {
                 </div>
 
             </div>
+
             <ToastContainer
                 position="bottom-center"
                 autoClose={5000}
@@ -270,7 +272,7 @@ const WordContainer = () => {
                 draggable
                 pauseOnHover />
 
-            <div className="absolute top-10 right-10 bg-white sm: flex sm:items-center">
+            <div className="absolute bottom-10 right-14 lg:top-10 lg:right-10 bg-white sm: flex sm:items-center">
                 <NoteBook
                     note={note}
                     setNote={setNote}

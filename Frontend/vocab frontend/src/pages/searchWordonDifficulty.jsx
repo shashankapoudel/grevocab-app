@@ -39,8 +39,8 @@ const SearchWordonDifficulty = () => {
     console.log(filteredWords)
 
     return (
-        <div className="flex flex-col justify-center items-center m-20 relative">
-            <div>
+        <div className="flex flex-col justify-center items-center m-20 relative ">
+            {/* <div className='sm:p-4'>
                 <label
                     htmlFor="questionLimit"
                     className="mr-3 lg:text-3xl sm:text-xl text-black"
@@ -54,26 +54,57 @@ const SearchWordonDifficulty = () => {
                     className="border px-3 py-2 hover:cursor-pointer hover:border-blue-500 text-black text-xl"
                 >
                     <option value="">Select Difficulty</option>
-                    <option className='capitalize' value="Easy">Easy</option>
+                    <option className='capitalize ' value="Easy">Easy</option>
                     <option className='capitalize' value="Medium">Medium</option>
                     <option className='capitalize' value="Difficult">Hard</option>
                 </select>
+            </div> */}
+
+            <div className="sm:p-4  flex flex-col sm:flex-row items-center gap-3">
+                <label
+                    htmlFor="worddifficulty"
+                    className="sm:mr-3 lg:text-3xl sm:text-xl text-lg text-black text-center sm:text-left"
+                >
+                    Select the level of difficulty:
+                </label>
+                <select
+                    id="worddifficulty"
+                    value={wordDifficulty}
+                    onChange={handleDifficulty}
+                    className="border px-3 py-2 hover:cursor-pointer hover:border-blue-500 text-black text-base sm:text-xl"
+                >
+                    <option value="">Select Difficulty</option>
+                    <option className="capitalize" value="Easy">Easy</option>
+                    <option className="capitalize" value="Medium">Medium</option>
+                    <option className="capitalize" value="Difficult">Hard</option>
+                </select>
             </div>
 
-            <div className='text-black p-5 gap-4  absolute left-5 top-24 grid grid-cols-3'>
-                {filteredWords.map((word, index) => (
-                    <div className='p-5 border gap-2 space-y-2' key={index}>
-                        <h1 className='text-xl font-bold text-center capitalize'>{word.word}</h1>
-                        <p><span className='font-semibold'>Meaning: </span>{word.meaning}</p>
-                        <p><span className='font-semibold'>Sentence: </span>{word.sentence}</p>
+
+            <div className='text-black p-5 gap-4  absolute left-5 top-24 flex items-center justify-center'>
+                {filteredWords.length === 0 ? (
+                    <div className="flex items-center justify-center my-8">
+                        <h1 className="text-black lg:text-6xl sm:text-3xl sm:font-semibold text-center">
+                            No any Words
+                        </h1>
+                    </div>) : (
+                    <div className='grid grid-cols-3'>
+                        {
+                            filteredWords.map((word, index) => (
+                                <div className='p-5 border gap-2 space-y-2 ' key={index}>
+                                    <h1 className='text-xl font-bold text-center capitalize'>{word.word}</h1>
+                                    <p><span className='font-semibold'>Meaning: </span>{word.meaning}</p>
+                                    <p><span className='font-semibold'>Sentence: </span>{word.sentence}</p>
+                                </div>
+                            ))
+                        }
                     </div>
-                )
                 )}
             </div>
 
 
 
-        </div>
+        </div >
     );
 };
 
