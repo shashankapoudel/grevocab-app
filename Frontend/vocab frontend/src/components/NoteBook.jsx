@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 
 const NoteBook = ({ note, setNote, words, currentWordIndex, user, toast, }) => {
-    // console.log(words, currentWordIndex);
-
     const handleSaveNote = async () => {
         const wordToAdd = words[currentWordIndex]
         const wordId = wordToAdd._id;
@@ -28,23 +26,6 @@ const NoteBook = ({ note, setNote, words, currentWordIndex, user, toast, }) => {
         }
     }
     return (
-        // <div className='flex flex-col w-full mx-auto border '>
-        //     <textarea
-        //         placeholder='Add your personal note for this word'
-        //         value={note}
-        //         onChange={(e) => setNote(e.target.value)}
-        //         className='w-full p-2 rounded border-gray-300 text-gray-700 resize-none'
-        //         rows="3"
-        //     // cols="54"
-
-        //     />
-        //     <button
-        //         className='text-black'
-        //         onClick={handleSaveNote}>
-        //         Save Note
-        //     </button>
-        // </div>
-
         <div className="flex flex-col w-full  mx-auto border bg-white">
             <textarea
                 placeholder="Add your personal note for this word"

@@ -37,14 +37,14 @@ const LoginUser = ({ setUser }) => {
                 return;
             }
             toast({
-                title: 'Registration successfull',
+                title: 'Login successfull',
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
                 position: "bottom"
             })
             localStorage.setItem("userInfo", JSON.stringify(data1));
-            setUser(data1)
+            // setUser(data1)
             navigate('/')
 
 
