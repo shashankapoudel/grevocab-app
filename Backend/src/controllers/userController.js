@@ -4,7 +4,7 @@ const { sendWelcomeEmail } = require("../services/emailService");
 const { ApiError } = require("../utils/ApiError");
 const { ApiResponse } = require("../utils/ApiResponse");
 const asyncHandler = require("../utils/asyncHandler");
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
@@ -34,10 +34,10 @@ const loginUser = asyncHandler(async (req, res) => {
     if (!user) {
         throw new ApiError(404, 'User with this email doesnot exist')
     }
-    const isPasswordCorrect = await bcrypt.compare(password, user.password)
-    if (!isPasswordCorrect) {
-        throw new ApiError(400, 'Incorrect Password')
-    }
+    // const isPasswordCorrect = await bcrypt.compare(password, user.password)
+    // if (!isPasswordCorrect) {
+    //     throw new ApiError(400, 'Incorrect Password')
+    // }
     const token = generateToken(user._id);
     const loggedInUser = await User.findById(user._id).select("-password")
     const options = {
