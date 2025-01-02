@@ -25,7 +25,7 @@ const LoginUser = ({ setUser }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email: data.email, password: data.password }),
+                body: JSON.stringify({ email: data.email }),
             })
             console.log(res);
             const data1 = await res.json()
