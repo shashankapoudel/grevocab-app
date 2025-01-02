@@ -15,7 +15,6 @@ const LoginUser = ({ setUser }) => {
     } = useForm({
         defaultValues: {
             email: "",
-            password: "",
         },
     });
 
@@ -115,43 +114,6 @@ const LoginUser = ({ setUser }) => {
                         />
                     </div>
 
-                    <div>
-                        <Controller
-                            name="password"
-                            control={control}
-                            rules={{
-                                required: {
-                                    value: true,
-                                    message: "Password is required"
-                                }
-                            }}
-                            render={({ field }) => (
-                                <div className="flex flex-col">
-                                    <label
-                                        className="text-labelLarge ml-1 mb-2 text-white"
-                                        htmlFor="password"
-                                    >
-                                        Password
-                                    </label>
-                                    <input
-                                        {...field}
-                                        type="password"
-                                        id="password"
-                                        placeholder="Enter your Password here"
-                                        className={`py-2.5 rounded-lg px-4 text-labelLarge cursor-pointer border ${errors.password
-                                            ? "border-red-500"
-                                            : "border-[#CFCFCF] focus:border-[#006AFF]"
-                                            } focus:outline-none`}
-                                    />
-                                    {errors.password && (
-                                        <p className="text-red-500 ml-1 text-labelMedium mt-1">
-                                            {errors.password.message}
-                                        </p>
-                                    )}
-                                </div>
-                            )}
-                        />
-                    </div>
                     <button
                         className="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg"
                         type="submit">
