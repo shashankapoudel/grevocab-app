@@ -7,9 +7,9 @@ const asyncHandler = require("../utils/asyncHandler");
 // const bcrypt = require('bcryptjs')
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
-        throw new ApiError(400, "name, email and password is required")
+    const { name, email } = req.body;
+    if (!name || !email) {
+        throw new ApiError(400, "name and email is required")
     }
     const existedUser = await User.findOne({ email })
     if (existedUser) {
@@ -26,8 +26,8 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    if (!password || !email) {
+    const { email } = req.body;
+    if (!email) {
         throw new ApiError(400, 'Password and email is required')
     }
     const user = await User.findOne({ email })
