@@ -35,7 +35,7 @@ app.use('/api/quiz', require('./src/routes/quizRoutes'));
 app.use('/api', require('./src/routes/worddicRoutes'));
 app.use('/api', require('./src/routes/pdfRoutes'));
 app.use('/api/score', require('./src/routes/scoreRoutes'));
-app.use('/api/user', require('./src/routes/streakRoutes'));
+app.use('/api/streaks', require('./src/routes/streakRoutes'));
 app.use('/api/avg', require('./src/routes/avgScoreRoutes'));
 app.use('/api/', require('./src/routes/leaderBoardRoutes'));
 app.use('/api/word', require('./src/routes/noteRoutes.js'));
