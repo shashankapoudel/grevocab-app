@@ -151,10 +151,7 @@ const RegisterUser = () => {
                         />
                     </div>
 
-                    {/* Password Field */}
 
-
-                    {/* Submit Button */}
 
                     <button
                         className="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg"
