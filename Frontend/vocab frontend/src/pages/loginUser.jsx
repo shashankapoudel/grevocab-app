@@ -66,7 +66,7 @@ const LoginUser = ({ setUser }) => {
     return (
         <div className="flex  justify-center items-center bg-gray-500 min-h-screen bg-cover bg-center"
             style={{
-                backgroundImage: "url('/public/Images/loginimage4.jpg')",
+                backgroundImage: "url('/Images/loginimage4.jpg')",
                 // backgroundSize: '60%',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',

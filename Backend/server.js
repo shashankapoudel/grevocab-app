@@ -1,12 +1,12 @@
 
 
 const express = require('express');
-const http = require('http'); // Import HTTP module to create server
-const { Server } = require('socket.io'); // Import Socket.IO
+const http = require('http'); 
+const { Server } = require('socket.io'); 
 const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const cors = require('cors');
-const initializeQuizSocket = require('./src/sockets/quizSocket'); // Import the multiplayer quiz socket logic
+
 
 dotenv.config();
 
@@ -42,7 +42,7 @@ app.use('/api/word', require('./src/routes/noteRoutes.js'));
 app.use('/api', require('./src/routes/difficultyRoutes'));
 
 
-initializeQuizSocket(io);
+
 
 const PORT = process.env.PORT || 5000;
 
