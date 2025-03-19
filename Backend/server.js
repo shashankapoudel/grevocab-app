@@ -1,8 +1,8 @@
 
 
 const express = require('express');
-const http = require('http'); 
-const { Server } = require('socket.io'); 
+const http = require('http');
+const { Server } = require('socket.io');
 const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const cors = require('cors');
@@ -23,9 +23,15 @@ const io = new Server(server, {
 
 app.use(express.json());
 
+// app.use(cors({
+//     origin: 'https://grevocab-app-1-frontend.onrender.com',
+//     methods: ["POST", "GET", "PUT"]
+// }));
+
 app.use(cors({
-    origin: 'https://grevocab-app-1-frontend.onrender.com',
-    methods: ["POST", "GET", "PUT"]
+    origin: '*', // Temporarily allow all origins
+    methods: ["POST", "GET", "PUT"],
+    credentials: true
 }));
 
 
