@@ -66,7 +66,7 @@ const RegisterUser = () => {
     return (
         <div className="flex  justify-center items-center bg-gray-500 min-h-screen"
             style={{
-                backgroundImage: "url('/public/Images/registerImage.jpg')",
+                backgroundImage: "url('/Images/registerImage.jpg')",
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
             }}
